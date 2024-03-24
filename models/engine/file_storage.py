@@ -2,6 +2,7 @@
 """this difines the filestorage"""
 
 import json
+import sys
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -43,3 +44,7 @@ class FileStorage:
                     self.new(eval(cls_name)(**i))
         except FileNotFoundError:
             return
+
+    def close(self):
+        """ calls reload() for deserializing the JSON file to objects."""
+        self.reload()
